@@ -1,0 +1,28 @@
+
+#Una habitación puede tener ninguno o 1 cliente (puede estar vacía o alquilada a nombre de un cliente, no interesa saber el nombre de todos los que están en la habitación, solo de 1 responsable).
+
+#No interesa almacenar las reservas del pasado pero si las del futuro, es decir, una vez que la habitación queda vacía se libera/elimina la reserva.
+
+#Los clientes se tienen que almacenar siempre y mantenerse en la BD junto a una nota que describa si es buen cliente o no.
+
+
+
+
+---Sugerencias
+Interpretar como si se quisiera guardar todos los alquileres de habitaciones y crear un botón que permita borrar todos los alquileres que no esten ocupados actualmente y la fecha sea anterior a la actual.
+
+El precio de la tabla reservas será calculado por la aplicación a partir del precio base de la tabla habitaciones (en verano más caro que invierno) y la cantidad de días que se reservan.
+
+La clave primaria de la tabla reserva tiene que hacer que sea única la reserva de una habitación para un día concreto
+
+Quitar posible guión del DNI para la letra y eliminar espacios, comprobar que se introduce numero y letra al final
+
+Poner todo el texto a mayúsculas desde la aplicación antes de guardarlo en la BD
+
+
+---Tablas
+clientes(id, nombre, apellidos, dni, sexo, fecha_nacimiento, pais, provincia, codigo_postal, direccion, telefono, observacion)
+
+reservas(habitaciones_id, fecha_entrada, fecha_salida, cliente_id, precio, observacion)
+
+habitaciones(id, numero, descripcion, precio_base, nombre)
