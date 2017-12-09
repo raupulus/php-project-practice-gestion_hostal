@@ -73,9 +73,8 @@
                 </ARTICLE>
             </DIV>
 
-
         <?php require ('aside.php'); ?>
-        <?= "</DIV>" ?>
+        </DIV>
         <?php require ('footer.php'); ?>
     </BODY>
 </HTML>
