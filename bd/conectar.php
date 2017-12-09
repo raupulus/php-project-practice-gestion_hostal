@@ -6,8 +6,11 @@ $user="hostal";
 $pass="123456";
 $dbname="hostal";
 
-//Función para conectar
-function conectar_pg() {
+/**
+ * Función para conectar, devuelve el objeto de la conexión
+ * @return Object   Devuelve el objeto que contiene la conexión a la BD
+ */
+function conectar() {
 $conexion = pg_connect("
     user=$user,
     password=$pass,
@@ -19,7 +22,9 @@ $conexion = pg_connect("
     return $conexion;
 }
 
-//Función para desconectar
+/**
+ * Función que desconecta la conexión previamente establecida con la BD
+ */
 function desconectar() {
     pg_close(conectar_pg());
 }
