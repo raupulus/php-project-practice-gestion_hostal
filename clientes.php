@@ -3,15 +3,15 @@
     <HEAD>
         <TITLE>Administración Hotel</TITLE>
         <?php //Metaetiquetas globales importadas
-            include ('metaetiquetas-generales.php');
+            require ('metaetiquetas-generales.php');
         ?>
         <META name='revised' content='Tuesday, February 13th, 2017, 13:22 pm' /><!--Última revisión del sitio-->
     </HEAD>
 
     <BODY>
         <?php
-            include ('titulo.php');
-            include ('menu-principal.php');
+            require ('funciones.php');
+            require ('header.php');
             echo '<DIV id="cajaContenido"><BR/>';
             echo '<DIV id="cajaEntradas"><BR/>';
         ?>
