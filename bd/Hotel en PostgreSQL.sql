@@ -11,10 +11,10 @@
 ---Crear Base de Datos hostal---
 --------------------------------
 /*
-createdb -T template0 -O postgres -E UTF-8 hostal
-psql postgres
-grant all privileges on database hostal to fryntiz;
-CREATE USER hostal PASSWORD '123456';
+#Se recomienda la contraseña "hostal":
+sudo -u postgres createuser -P hostal
+sudo -u postgres createdb hostal
+sudo -u postgres psql -l
 */
 
 --------------------------
@@ -48,7 +48,7 @@ INSERT INTO clientes (
 	direccion,telefono,
 	observacion)
 
-	VALUES 
+	VALUES
 		(
 		'Pepe', 'Martinez Gallego', '41021318D', 'HOMBRE',
 		'01-04-1934', 'ESPAÑA', 'SEVILLA','Dos Hermanas', 42323,
@@ -169,7 +169,7 @@ INSERT INTO habitaciones (
 	descripcion,
 	precio_base,nombre)
 
-	VALUES 
+	VALUES
 		(
 			1,
 			'Habitación con dos camas',
@@ -181,67 +181,67 @@ INSERT INTO habitaciones (
 			'Habitación con tres camas',
 			79, 'Habitación Triple'
 		),
-		
+
 		(
 			3,
 			'Habitación con una cama',
 			55, 'Habitación Normal'
 		),
-		
+
 		(
 			4,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			5,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			6,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			7,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			8,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			9,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			10,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			11,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			12,
 			'Habitación con dos camas',
 			68, 'Habitación Doble'
 		),
-		
+
 		(
 			13,
 			'Habitación con dos camas',
@@ -314,44 +314,3 @@ INSERT INTO reservas (
 			'No hay datos'
 		)
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
