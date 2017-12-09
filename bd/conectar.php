@@ -15,13 +15,12 @@ function conectar(): PDO
     $pass="hostal";
 
     try {
-        return $conexion = new PDO("
-            $controlador:host=$host;
+        return new PDO("$controlador:
+            host=$host;
             port=$port;
-            dbname=$bd;
+            dbname=$dbname;
             user=$user;
             password=$pass;
-            charset=UTF8;
         ");
     } catch (PDOException $e) {
 ?>
