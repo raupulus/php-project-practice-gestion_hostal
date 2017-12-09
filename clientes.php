@@ -184,10 +184,33 @@
                                 <TD>Dos Hermanas</TD>
                             </TR>
                             <!--Fin de la parte temporal-->
+                        </TABLE>
+                    </SECTION>
 
+                    <SECTION>
+                        <H3>Todos los clientes</H3>
+                        <P>Tablas con todos los clientes existentes</P>
+                        <TABLE>
+                            <TR>
+                                <TH>Nombre</TH>
+                                <TH>Apellidos</TH>
+                                <TH>Teléfono</TH>
+                                <TH>Provincia</TH>
+                                <TH>Ciudad</TH>
+                            </TR>
                             <?php
                                 $clientes = consulta_clientes_todos();
-                                var_dump($clientes);
+                                foreach ($clientes as $key => $value):
+                                ?>
+                                    <TR>
+                                        <TD><?= $value['nombre'] ?></TD>
+                                        <TD><?= $value['apellidos'] ?></TD>
+                                        <TD><?= $value['telefono'] ?></TD>
+                                        <TD><?= $value['provincia'] ?></TD>
+                                        <TD><?= $value['ciudad'] ?></TD>
+                                    </TR>
+                                <?php
+                                endforeach;
                             ?>
                         </TABLE>
                     </SECTION>
