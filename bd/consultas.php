@@ -2,7 +2,7 @@
 
 function consulta_clientes_todos()
 {
-    conectar();
+    $pdo = conectar();
     return $clientes = $pdo->query('SELECT * FROM clientes');
 }
 
