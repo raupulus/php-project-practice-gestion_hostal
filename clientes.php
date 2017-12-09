@@ -195,7 +195,7 @@
         <?php
             echo '</DIV><BR/>';
             echo '</DIV>';
-            include ('footer.php');
+            require ('footer.php');
         ?>
     </BODY>
 </HTML>
