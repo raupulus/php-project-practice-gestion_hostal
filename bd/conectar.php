@@ -9,18 +9,18 @@ $dbname="hostal";
 //Función para conectar
 function conectar_pg() {
 $conexion = pg_connect("
-	user=$user,
-	password=$pass,
-	host=$host,
-	port=$port,
-	dbname=$bd
+    user=$user,
+    password=$pass,
+    host=$host,
+    port=$port,
+    dbname=$bd
 ") or die( "Error al conectar: ".pg_last_error() );
 
-	return $conexion;
+    return $conexion;
 }
 
 //Función para desconectar
 function desconectar() {
-	pg_close(conectar_pg());
+    pg_close(conectar_pg());
 }
 ?>
