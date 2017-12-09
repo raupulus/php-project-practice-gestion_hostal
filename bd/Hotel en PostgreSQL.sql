@@ -22,7 +22,7 @@ sudo -u postgres psql -l
 --------------------------
 DROP TABLE IF EXISTS clientes CASCADE; --Elimina la tabla si existiera
 CREATE TABLE clientes (
-    id          BIGSERIAL CONSTRAINT pk_clientes PRIMARY KEY
+    id            BIGSERIAL CONSTRAINT pk_clientes PRIMARY KEY
     , nombre      VARCHAR(255)
     , apellidos   VARCHAR(255)
     , dni         VARCHAR(255)
@@ -152,7 +152,7 @@ INSERT INTO clientes (
 ------------------------------
 DROP TABLE IF EXISTS habitaciones CASCADE; --Elimina la tabla si existiera
 CREATE TABLE habitaciones (
-    id            BIGSERIAL CONSTRAINT pk_habitaciones PRIMARY KEY
+    id              BIGSERIAL CONSTRAINT pk_habitaciones PRIMARY KEY
     , numero        NUMERIC(30)
     , descripcion   TEXT
     , precio_base   DECIMAL(12,2)
@@ -163,9 +163,9 @@ CREATE TABLE habitaciones (
 ---Insertar Datos en tabla habitaciones---
 ------------------------------------------
 INSERT INTO habitaciones (
-    numero,
-    descripcion,
-    precio_base,nombre)
+    numero
+    , descripcion
+    , precio_base,nombre)
 
     VALUES
         (
@@ -226,7 +226,7 @@ INSERT INTO habitaciones (
         10
         , 'Habitación con dos camas'
         , 68, 'Habitación Doble'
-        ),
+        )
 ;
 
 --------------------------
@@ -288,7 +288,7 @@ INSERT INTO reservas (
         ),
 
         (
-        11
+        10
         , (CURRENT_DATE - 1),(CURRENT_DATE + 5)
         , 9,399.21
         , 'No hay datos'
