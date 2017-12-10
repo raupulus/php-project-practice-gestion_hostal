@@ -1,26 +1,43 @@
 <?php
-//Datos de Conexión
-$host="127.0.0.1";
-$port="5432";
-$user="hostal";
-$pass="123456";
-$dbname="hostal";
+/**
+ * Función para conectar, devuelve el objeto de la conexión
+ * @return PDO          La instancia de la clase PDO que representa la conexión
+ * @throws PDOException Si se produce algún error que impide la conexión
+ */
+function conectar(): PDO
+{
+    // Datos de Conexión
+    $controlador="pgsql"; // pgsql/mysql
+    $host="localhost";
+    $port="5432";
+    $dbname="hostal";
+    $user="hostal";
+    $pass="hostal";
 
-//Función para conectar
-function conectar_pg() {
-$conexion = pg_connect("
-	user=$user,
-	password=$pass,
-	host=$host,
-	port=$port,
-	dbname=$bd
-") or die( "Error al conectar: ".pg_last_error() );
-
-	return $conexion;
+    try {
+        return new PDO("$controlador:
+            host=$host;
+            port=$port;
+            dbname=$dbname;
+            user=$user;
+            password=$pass;
+        ");
+    } catch (PDOException $e) {
+?>
+        <h1>Error catastrófico de base de datos: no se puede continuar</h1>
+        <p>
+            No ha sido posible la conexión con la base de datos
+        </p>
+<?php
+        throw $e;
+    }
 }
 
-//Función para desconectar
-function desconectar() {
-	pg_close(conectar_pg());
+/**
+ * Función que desconecta la conexión previamente establecida con la BD
+ */
+function desconectar()
+{
+    pg_close(conectar_pg());
 }
 ?>
