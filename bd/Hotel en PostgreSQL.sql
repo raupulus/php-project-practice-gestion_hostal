@@ -35,6 +35,7 @@ CREATE TABLE clientes (
     , direccion   VARCHAR(255)
     , telefono    NUMERIC(30)
     , observacion TEXT
+    , fecha_alta  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
