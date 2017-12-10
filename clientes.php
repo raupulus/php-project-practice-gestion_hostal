@@ -20,7 +20,12 @@
                     <header>
                         <h2>CLIENTES</h2>
                         <P>Detalles de clientes registrados</P>
-                        <time datetime="2017-02-14T01:20:00+01:00"><small>Último cliente registrado 14-02-2017 a las 01:20</small></time>
+                        <time datetime="<?= consulta_clientes_fecha_ultima_alta() ?>">
+                            <small>
+                                Último cliente registrado →
+                                <?= consulta_clientes_fecha_ultima_alta() ?>
+                            </small>
+                        </time>
                     </header>
 
                     <div class="agregar" onClick="location.href = 'form-clientes.php'">
