@@ -92,22 +92,19 @@ function consulta_clientes_nunca_reservaron()
 
 /**
  * Devuelve solo la fecha del último alta de cliente
- * @return String Cadena con fecha y hora del alta
+ * @return DateTime Objeto creado con la marca de tiempo devuelta
  */
 function consulta_clientes_fecha_ultima_alta()
 {
     $pdo = conectar();
-    $clientes = $pdo->query('SELECT
+    $alta = $pdo->prepare('SELECT
             max(fecha_alta) AS ultima_alta
             FROM clientes
             ;
     ');
-
-    // TOFIX → No utilizar un foreach para devolver la fecha
-    // TOFIX → Devolver formateado solo en fecha y hora
-    foreach ($clientes as $value) {
-        return $value['ultima_alta'];
-    }
+    $alta->execute();
+    $alta = $alta->fetchColumn();
+    return new DateTime($alta);
 }
 
 function consulta_reservas_fecha_ultima_reserva()
