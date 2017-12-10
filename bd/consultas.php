@@ -95,16 +95,40 @@ function consulta_clientes_nunca_reservaron($pdo)
  * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
  * @return DateTime  Objeto creado con la marca de tiempo devuelta
  */
-function consulta_clientes_fecha_ultima_alta($pdo): DateTime
+function consulta_clientes_fecha_ultima_alta(PDO $pdo): DateTime
 {
-    $alta = $pdo->prepare('SELECT
-            max(fecha_alta) AS ultima_alta
-            FROM clientes
-            ;
-    ');
+    $alta = $pdo->prepare('SELECT max(fecha_alta) AS ultima_alta
+                             FROM clientes
+                            ;
+                        ');
     $alta->execute();
     $alta = $alta->fetchColumn();
     return new DateTime($alta);
+}
+
+function consulta_clientes_buscar(PDO $pdo)
+{
+    $clientes = $pdo->prepare(
+        'SELECT *
+           FROM clientes
+          WHERE lower(nombre) LIKE lower(:nombre)
+                AND lower(apellidos) LIKE lower(:apellidos)
+                AND lower(dni) LIKE lower(:dni)
+                AND telefono::text LIKE :telefono
+        ;
+    ');
+
+    $nombre = '';
+    $apellidos = '';
+    $dni = '';
+    $telefono = '6';
+    $clientes->execute([
+        ':nombre' => "%{$nombre}%",
+        ':apellidos' => "%{$apellidos}%",
+        ':dni' => "%{$dni}%",
+        ':telefono' => "%{$telefono}%",
+    ]);
+    return $clientes->fetchAll();
 }
 
 function consulta_reservas_fecha_ultima_reserva($pdo)

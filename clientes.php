@@ -61,6 +61,22 @@
                                 <th>Ciudad</th>
                                 <th>Tiene Reservas</th>
                             </tr>
+
+                            <?php
+                                $clientes = consulta_clientes_buscar($pdo);
+                                foreach ($clientes as $key => $value):
+                            ?>
+                                    <tr>
+                                        <td><?= $value['nombre'] ?></td>
+                                        <td><?= $value['apellidos'] ?></td>
+                                        <td><?= $value['telefono'] ?></td>
+                                        <td><?= $value['provincia'] ?></td>
+                                        <td><?= $value['ciudad'] ?></td>
+                                        <td></td>
+                                    </tr>
+                            <?php
+                                endforeach;
+                            ?>
                         </table>
                     </section>
 
