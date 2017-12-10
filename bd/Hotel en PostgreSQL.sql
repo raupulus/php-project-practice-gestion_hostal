@@ -234,7 +234,9 @@ INSERT INTO habitaciones (
 --------------------------
 DROP TABLE IF EXISTS reservas CASCADE; --Elimina la tabla si existiera
 CREATE TABLE reservas (
-    habitaciones_id    BIGINT
+    id                 SERIAL
+                       CONSTRAINT uq_reservas_id UNIQUE
+    , habitaciones_id  BIGINT
                        CONSTRAINT fk_reservas_habitaciones
                        REFERENCES habitaciones(id)
     , fecha_entrada    DATE
