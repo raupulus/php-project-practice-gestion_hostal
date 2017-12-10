@@ -1,11 +1,19 @@
 <?php
-
+/**
+ * Devuelve todas las filas de la tabla clientes
+ * @return query Devuelve las tuplas con los clientes.
+ */
 function consulta_clientes_todos()
 {
     $pdo = conectar();
     return $clientes = $pdo->query('SELECT * FROM clientes');
 }
 
+/**
+ * Devuelve todas las filas de clientes que tengan alguna reserva,
+ * el número de habitación, los días reservados y el precio de la reserva.
+ * @return query Devuelve los clientes, habitación, día y precio
+ */
 function consulta_clientes_con_reserva()
 {
     $pdo = conectar();
@@ -28,6 +36,10 @@ function consulta_clientes_con_reserva()
     ');
 }
 
+/**
+ * Devuelve todas las filas de clientes que no tengan reservas
+ * @return query Devuelve los clientes sin reserva
+ */
 function consulta_clientes_sin_reserva()
 {
     $pdo = conectar();
@@ -57,6 +69,10 @@ function consulta_clientes_sin_reserva()
     ');
 }
 
+/**
+ * Devuelve los clientes que nunca han realizado una reserva
+ * @return query Con clientes que nunca han reservado
+ */
 function consulta_clientes_nunca_reservaron()
 {
     $pdo = conectar();
