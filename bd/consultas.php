@@ -8,10 +8,6 @@ function consulta_clientes_todos()
 
 function consulta_clientes_con_reserva()
 {
-    //$clientes = consulta_clientes_todos();
-    // Filtrar resultados¿?
-    // desconectar();
-
     $pdo = conectar();
     return $clientes = $pdo->query('SELECT
             clientes.nombre,
@@ -27,13 +23,38 @@ function consulta_clientes_con_reserva()
             JOIN reservas ON clientes.id = reservas.clientes_id
             JOIN habitaciones ON reservas.clientes_id = habitaciones.id
         WHERE reservas.fecha_entrada > CURRENT_DATE
-        ORDER BY reservas.fecha_entrada ASC;
+        ORDER BY reservas.fecha_entrada ASC
+        ;
     ');
 }
 
 function consulta_clientes_sin_reserva()
 {
+    $pdo = conectar();
+    return $clientes = $pdo->query('SELECT
+            clientes.nombre,
+            clientes.apellidos,
+            clientes.telefono,
+            clientes.provincia,
+            clientes.ciudad
+        FROM
+            clientes
+            LEFT JOIN reservas ON clientes.id = reservas.clientes_id
 
+        EXCEPT
+
+        SELECT
+            clientes.nombre,
+            clientes.apellidos,
+            clientes.telefono,
+            clientes.provincia,
+            clientes.ciudad
+        FROM
+            clientes
+            LEFT JOIN reservas ON clientes.id = reservas.clientes_id
+        WHERE reservas.fecha_entrada > CURRENT_DATE
+        ;
+    ');
 }
 
 function consulta_clientes_nunca_reservaron()
