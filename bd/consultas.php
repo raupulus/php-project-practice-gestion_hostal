@@ -59,7 +59,19 @@ function consulta_clientes_sin_reserva()
 
 function consulta_clientes_nunca_reservaron()
 {
-
+    $pdo = conectar();
+    return $clientes = $pdo->query('SELECT
+            clientes.nombre,
+            clientes.apellidos,
+            clientes.telefono,
+            clientes.provincia,
+            clientes.ciudad
+        FROM
+            clientes
+            LEFT JOIN reservas ON clientes.id = reservas.clientes_id
+        WHERE (reservas.fecha_entrada IS NULL) AND (reservas.fecha_salida) IS NULL
+        ;
+    ');
 }
 
 function consulta_clientes_fecha_ultima_reserva()
