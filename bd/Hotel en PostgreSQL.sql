@@ -35,6 +35,7 @@ CREATE TABLE clientes (
     , direccion   VARCHAR(255)
     , telefono    NUMERIC(30)
     , observacion TEXT
+    , fecha_alta  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -49,17 +50,17 @@ INSERT INTO clientes (
 
     VALUES
         (
-        'Pepe', 'Martinez Gallego', '41021318D', 'HOMBRE',
-        '01-04-1934', 'ESPAÑA', 'SEVILLA','Dos Hermanas', 42323,
-        'Calle Inventada nº14, Bloque A', 621322123,
-        'Es un buen cliente, cuidadoso, amable y paga por adelantado'
+        'Pepe', 'Martinez Gallego', '41021318D', 'HOMBRE'
+        , '01-04-1934', 'ESPAÑA', 'SEVILLA','Dos Hermanas', 42323
+        , 'Calle Inventada nº14, Bloque A', 621322123
+        , 'Es un buen cliente, cuidadoso, amable y paga por adelantado'
         ),
 
         (
-        'Ana', 'Muñoz Alacarta', '51021318D', 'MUJER',
-        '05-09-1966', 'ESPAÑA', 'CADIZ', 'Trebujena', 22723,
-        'Calle Inventada nº13, Bloque A', 661622123,
-        'No he tratado con ella'
+        'Ana', 'Muñoz Alacarta', '51021318D', 'MUJER'
+        , '05-09-1966', 'ESPAÑA', 'CADIZ', 'Trebujena', 22723
+        , 'Calle Inventada nº13, Bloque A', 661622123
+        , 'No he tratado con ella'
         ),
 
         (
@@ -234,16 +235,19 @@ INSERT INTO habitaciones (
 --------------------------
 DROP TABLE IF EXISTS reservas CASCADE; --Elimina la tabla si existiera
 CREATE TABLE reservas (
-    habitaciones_id    BIGINT
+    id                 SERIAL
+                       CONSTRAINT uq_reservas_id UNIQUE
+    , habitaciones_id  BIGINT
                        CONSTRAINT fk_reservas_habitaciones
                        REFERENCES habitaciones(id)
-    , fecha_entrada      DATE
-    , fecha_salida       DATE
-    , clientes_id        BIGINT
+    , fecha_entrada    DATE
+    , fecha_salida     DATE
+    , fecha_reserva    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    , clientes_id      BIGINT
                        CONSTRAINT fk_reservas_clientes
                        REFERENCES clientes(id)
-    , precio             DECIMAL(12,2)
-    , observacion        TEXT
+    , precio           DECIMAL(12,2)
+    , observacion      TEXT
 
     , CONSTRAINT pk_reservas PRIMARY KEY (habitaciones_id, fecha_entrada, fecha_salida)
 );
@@ -254,6 +258,7 @@ CREATE TABLE reservas (
 INSERT INTO reservas (
     habitaciones_id
     , fecha_entrada, fecha_salida
+    , fecha_reserva
     , clientes_id, precio
     , observacion
 )
@@ -262,6 +267,7 @@ INSERT INTO reservas (
         (
         1
         , '01-09-2016','04-09-2016'
+        , DEFAULT
         , 1,251.44
         , 'Se marcharon un día antes de lo previsto'
         ),
@@ -269,6 +275,7 @@ INSERT INTO reservas (
         (
         6
         , '15-12-2017','03-09-2018'
+        , DEFAULT
         , 4,3200
         , 'Reserva realizada un año antes'
         ),
@@ -276,6 +283,7 @@ INSERT INTO reservas (
         (
         3
         , CURRENT_DATE,(CURRENT_DATE + 1)
+        , DEFAULT
         , 3,134.22
         , 'No hay datos'
         ),
@@ -283,6 +291,7 @@ INSERT INTO reservas (
         (
         7
         , (CURRENT_DATE - 6),(CURRENT_DATE + 22)
+        , DEFAULT
         , 5,1231.12
         , 'No hay datos'
         ),
@@ -290,6 +299,7 @@ INSERT INTO reservas (
         (
         10
         , (CURRENT_DATE - 1),(CURRENT_DATE + 5)
+        , DEFAULT
         , 9,399.21
         , 'No hay datos'
         )
