@@ -12,3 +12,13 @@ function limpiarSalida()
 {
 
 }
+
+/**
+ * Escapa una cadena correctamente.
+ * @param  string $cadena La cadena a escapar
+ * @return string         La cadena escapada
+ */
+function limpiarCadena($cadena): string
+{
+    return htmlspecialchars($cadena, ENT_QUOTES | ENT_SUBSTITUTE);
+}
