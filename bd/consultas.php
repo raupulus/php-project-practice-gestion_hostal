@@ -109,3 +109,14 @@ function consulta_clientes_fecha_ultima_alta()
         return $value['ultima_alta'];
     }
 }
+
+function consulta_reservas_fecha_ultima_reserva()
+{
+    // TOFIX → Sin completar
+    $pdo = conectar();
+    return $clientes = $pdo->query('SELECT
+            max(fecha_reserva) AS ultima_reserva
+            FROM reservas
+    ;
+    ');
+}
