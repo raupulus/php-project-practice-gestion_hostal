@@ -20,10 +20,11 @@
                     <header>
                         <h2>CLIENTES</h2>
                         <P>Detalles de clientes registrados</P>
-                        <time datetime="<?= consulta_clientes_fecha_ultima_alta() ?>">
+                        <?php $fecha = consulta_clientes_fecha_ultima_alta() ?>
+                        <time datetime="<?= $fecha->format('d-m-Y H:i:s O'); ?>">
                             <small>
                                 Último cliente registrado →
-                                <?= consulta_clientes_fecha_ultima_alta() ?>
+                                <?= $fecha->format('d-m-Y H:i:s'); ?>
                             </small>
                         </time>
                     </header>
@@ -38,7 +39,7 @@
 
                     <div id="buscar">
                         <FORM>
-                            <input type="button" value="Buscar" onClick="document.getElementById('busqueda').style.display = 'block';"/>
+                            <input type="button" value="Buscar" onClick="document.getElementById('busqueda').style.display = 'block';" />
                             Nombre <input type="search" />
                             Apellidos <input type="search" />
                             <BR /><BR />
