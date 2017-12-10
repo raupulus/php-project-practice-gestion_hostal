@@ -3,9 +3,8 @@
  * Devuelve todas las filas de la tabla clientes
  * @return query Devuelve las tuplas con los clientes.
  */
-function consulta_clientes_todos()
+function consulta_clientes_todos($pdo)
 {
-    $pdo = conectar();
     return $clientes = $pdo->query('SELECT * FROM clientes');
 }
 
@@ -14,9 +13,8 @@ function consulta_clientes_todos()
  * el número de habitación, los días reservados y el precio de la reserva.
  * @return query Devuelve los clientes, habitación, día y precio
  */
-function consulta_clientes_con_reserva()
+function consulta_clientes_con_reserva($pdo)
 {
-    $pdo = conectar();
     return $clientes = $pdo->query('SELECT
             clientes.nombre,
             clientes.apellidos,
@@ -40,9 +38,8 @@ function consulta_clientes_con_reserva()
  * Devuelve todas las filas de clientes que no tengan reservas
  * @return query Devuelve los clientes sin reserva
  */
-function consulta_clientes_sin_reserva()
+function consulta_clientes_sin_reserva($pdo)
 {
-    $pdo = conectar();
     return $clientes = $pdo->query('SELECT
             clientes.nombre,
             clientes.apellidos,
@@ -73,9 +70,8 @@ function consulta_clientes_sin_reserva()
  * Devuelve los clientes que nunca han realizado una reserva
  * @return query Con clientes que nunca han reservado
  */
-function consulta_clientes_nunca_reservaron()
+function consulta_clientes_nunca_reservaron($pdo)
 {
-    $pdo = conectar();
     return $clientes = $pdo->query('SELECT
             clientes.nombre,
             clientes.apellidos,
@@ -92,11 +88,11 @@ function consulta_clientes_nunca_reservaron()
 
 /**
  * Devuelve solo la fecha del último alta de cliente
- * @return DateTime Objeto creado con la marca de tiempo devuelta
+ * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
+ * @return DateTime  Objeto creado con la marca de tiempo devuelta
  */
-function consulta_clientes_fecha_ultima_alta()
+function consulta_clientes_fecha_ultima_alta($pdo): DateTime
 {
-    $pdo = conectar();
     $alta = $pdo->prepare('SELECT
             max(fecha_alta) AS ultima_alta
             FROM clientes
@@ -107,10 +103,9 @@ function consulta_clientes_fecha_ultima_alta()
     return new DateTime($alta);
 }
 
-function consulta_reservas_fecha_ultima_reserva()
+function consulta_reservas_fecha_ultima_reserva($pdo)
 {
     // TOFIX → Sin completar
-    $pdo = conectar();
     return $clientes = $pdo->query('SELECT
             max(fecha_reserva) AS ultima_reserva
             FROM reservas

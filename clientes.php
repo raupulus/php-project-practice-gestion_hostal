@@ -12,6 +12,8 @@
         <?php
             require ('funciones.php');
             require ('header.php');
+            $pdo = conectar();
+            $fecha = consulta_clientes_fecha_ultima_alta($pdo);
         ?>
 
         <div id="cajaContenido">
@@ -20,7 +22,6 @@
                     <header>
                         <h2>CLIENTES</h2>
                         <P>Detalles de clientes registrados</P>
-                        <?php $fecha = consulta_clientes_fecha_ultima_alta() ?>
                         <time datetime="<?= $fecha->format('d-m-Y H:i:s O'); ?>">
                             <small>
                                 Último cliente registrado →
@@ -79,7 +80,7 @@
                             </tr>
 
                             <?php
-                                $clientes = consulta_clientes_con_reserva();
+                                $clientes = consulta_clientes_con_reserva($pdo);
                                 foreach ($clientes as $key => $value):
                             ?>
                                     <tr>
@@ -111,7 +112,7 @@
                             </tr>
 
                             <?php
-                                $clientes = consulta_clientes_sin_reserva();
+                                $clientes = consulta_clientes_sin_reserva($pdo);
                                 foreach ($clientes as $key => $value):
                             ?>
                                     <tr>
@@ -140,7 +141,7 @@
                             </tr>
 
                             <?php
-                                $clientes = consulta_clientes_nunca_reservaron();
+                                $clientes = consulta_clientes_nunca_reservaron($pdo);
                                 foreach ($clientes as $key => $value):
                             ?>
                                     <tr>
@@ -168,7 +169,7 @@
                                 <th>Ciudad</th>
                             </tr>
                             <?php
-                                $clientes = consulta_clientes_todos();
+                                $clientes = consulta_clientes_todos($pdo);
                                 foreach ($clientes as $key => $value):
                             ?>
                                     <tr>
