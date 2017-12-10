@@ -128,7 +128,7 @@
 
                     <section>
                         <h3>Clientes que nunca han reservados</h3>
-                        <P>Clientes que no han creado nuna una reserva</P>
+                        <P>Clientes que no han creado nunca una reserva</P>
                         <table>
                             <tr>
                                 <th>Nombre</th>
