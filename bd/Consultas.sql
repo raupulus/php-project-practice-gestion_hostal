@@ -54,7 +54,7 @@ SELECT
     clientes.provincia,
     clientes.ciudad,
     habitaciones.numero,
-    (reservas.fecha_salida - reservas.fecha_entrada) AS Dias_Reservados,
+    (reservas.fecha_salida - reservas.fecha_entrada) AS dias_reservados,
     reservas.precio
 FROM
     clientes

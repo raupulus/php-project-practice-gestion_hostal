@@ -60,7 +60,7 @@
                     <SECTION>
                         <H3>Con reserva en este momento</H3>
                         <P>Clientes que tienen reserva</P>
-                        <TABLE>
+                        <table>
                             <TR>
                                 <TH>Nombre</TH>
                                 <TH>Apellidos</TH>
@@ -72,53 +72,24 @@
                                 <TH>Precio</TH>
                             </TR>
 
-                            <!--Temporal para diseño, esta parte se llena con la BD-->
-                            <TR>
-                                <TD>Pepe</TD>
-                                <TD>Mero Calistro</TD>
-                                <TD>612123123</TD>
-                                <TD>Cádiz</TD>
-                                <TD>Chipiona</TD>
-                                <TD>13</TD>
-                                <TD>2 días</TD>
-                                <TD>112€</TD>
-                            </TR>
-                            <TR>
-                                <TD>Ana</TD>
-                                <TD>Corneta Quemada</TD>
-                                <TD>6987987</TD>
-                                <TD>Sevilla</TD>
-                                <TD>Dos hermanas</TD>
-                                <TD>11</TD>
-                                <TD>4 días</TD>
-                                <TD>192€</TD>
-                            </TR>
-                            <TR>
-                                <TD>Pepe</TD>
-                                <TD>Mero Calistro</TD>
-                                <TD>612123123</TD>
-                                <TD>Cádiz</TD>
-                                <TD>Chipiona</TD>
-                                <TD>13</TD>
-                                <TD>8 días</TD>
-                                <TD>392€</TD>
-                            </TR>
-                            <TR>
-                                <TD>Ana</TD>
-                                <TD>Corneta Quemada</TD>
-                                <TD>6987987</TD>
-                                <TD>Sevilla</TD>
-                                <TD>Camas</TD>
-                                <TD>11</TD>
-                                <TD>5 días</TD>
-                                <TD>292€</TD>
-                            </TR>
-                            <!--Fin de la parte temporal-->
-
                             <?php
-
+                                $clientes = consulta_clientes_con_reserva();
+                                foreach ($clientes as $key => $value):
                             ?>
-                        </TABLE>
+                                    <TR>
+                                        <TD><?= $value['nombre'] ?></TD>
+                                        <TD><?= $value['apellidos'] ?></TD>
+                                        <TD><?= $value['telefono'] ?></TD>
+                                        <TD><?= $value['provincia'] ?></TD>
+                                        <TD><?= $value['ciudad'] ?></TD>
+                                        <TD><?= $value['numeros'] ?></TD>
+                                        <TD><?= $value['dias_reservados'] ?></TD>
+                                        <TD><?= $value['precio'] ?></TD>
+                                    </TR>
+                            <?php
+                                endforeach;
+                            ?>
+                        </table
                     </SECTION>
 
                     <SECTION>
