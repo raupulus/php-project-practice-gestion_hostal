@@ -104,25 +104,19 @@
                                 <th>Ciudad</th>
                             </tr>
 
-                            <!--Temporal para diseño, esta parte se llena con la BD-->
-                            <tr>
-                                <td>Pepe</td>
-                                <td>Mero Calistro</td>
-                                <td>612123123</td>
-                                <td>Cádiz</td>
-                                <td>Chipiona</td>
-                            </tr>
-                            <tr>
-                                <td>Ana</td>
-                                <td>Corneta Quemada</td>
-                                <td>6987987</td>
-                                <td>Sevilla</td>
-                                <td>Dos Hermanas</td>
-                            </tr>
-                            <!--Fin de la parte temporal-->
-
                             <?php
-
+                                $clientes = consulta_clientes_sin_reserva();
+                                foreach ($clientes as $key => $value):
+                            ?>
+                                    <tr>
+                                        <td><?= $value['nombre'] ?></td>
+                                        <td><?= $value['apellidos'] ?></td>
+                                        <td><?= $value['telefono'] ?></td>
+                                        <td><?= $value['provincia'] ?></td>
+                                        <td><?= $value['ciudad'] ?></td>
+                                    </tr>
+                            <?php
+                                endforeach;
                             ?>
                         </table>
                     </section>
