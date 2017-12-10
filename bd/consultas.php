@@ -1,6 +1,7 @@
 <?php
 /**
  * Devuelve todas las filas de la tabla clientes
+ * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
  * @return query Devuelve las tuplas con los clientes.
  */
 function consulta_clientes_todos($pdo)
@@ -11,6 +12,7 @@ function consulta_clientes_todos($pdo)
 /**
  * Devuelve todas las filas de clientes que tengan alguna reserva,
  * el número de habitación, los días reservados y el precio de la reserva.
+ * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
  * @return query Devuelve los clientes, habitación, día y precio
  */
 function consulta_clientes_con_reserva($pdo)
@@ -36,6 +38,7 @@ function consulta_clientes_con_reserva($pdo)
 
 /**
  * Devuelve todas las filas de clientes que no tengan reservas
+ * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
  * @return query Devuelve los clientes sin reserva
  */
 function consulta_clientes_sin_reserva($pdo)
@@ -68,6 +71,7 @@ function consulta_clientes_sin_reserva($pdo)
 
 /**
  * Devuelve los clientes que nunca han realizado una reserva
+ * @param  PDO  $pdo Recibe un objeto que representa la conexión con la BD
  * @return query Con clientes que nunca han reservado
  */
 function consulta_clientes_nunca_reservaron($pdo)
