@@ -106,6 +106,12 @@ function consulta_clientes_fecha_ultima_alta(PDO $pdo): DateTime
     return new DateTime($alta);
 }
 
+/**
+ * A partir de los datos recibidos busca clientes que coincidan
+ * @param  PDO    $pdo    Recibe un objeto que representa la conexión con la BD
+ * @param  array  $datos  Array con los datos de la búsqueda
+ * @return array          Devuelve array con todas las filas y columnas
+ */
 function consulta_clientes_buscar(PDO $pdo, array $datos)
 {
     // TODO → Mostrar si tiene reservas
