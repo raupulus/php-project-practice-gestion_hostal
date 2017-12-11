@@ -108,7 +108,7 @@ function consulta_clientes_fecha_ultima_alta(PDO $pdo): DateTime
 
 function consulta_clientes_buscar(PDO $pdo, array $datos)
 {
-    // TODO →
+    // TODO → Mostrar si tiene reservas
     $clientes = $pdo->prepare(
         'SELECT *
            FROM clientes
