@@ -3,9 +3,14 @@
 require './bd/conectar.php';
 require './bd/consultas.php';
 
-function limpiarEntrada()
+function limpiarPOST(string $cadena): string
 {
+    return trim(filter_input(INPUT_POST, $cadena));
+}
 
+function limpiarGET(string $cadena): string
+{
+    return trim(filter_input(INPUT_GET, $cadena));
 }
 
 function limpiarSalida()

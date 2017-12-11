@@ -34,51 +34,76 @@
                         +Nuevo Cliente
                     </div>
 
-                    <div class="agregar mostrarBuscar" onClick="document.getElementById('buscar').style.display = 'block';">
+                    <div class="agregar mostrarBuscar">
                         Buscar Cliente
                     </div>
 
-                    <div id="buscar">
-                        <FORM>
-                            <input type="button" value="Buscar" onClick="document.getElementById('busqueda').style.display = 'block';" />
-                            Nombre <input type="search" />
-                            Apellidos <input type="search" />
-                            <BR /><BR />
-                            DNI <input type="search" />
-                            Teléfono <input type="search" />
-                        </FORM>
+                    <div>
+                        <form action="clientes.php" method="post">
+                            <label for="nombre">Nombre</label>
+                            <input id="nombre" type="search" name="nombre"
+                                   value="<?= limpiarPOST('nombre') ?>" />
+
+                            <label for="apellidos">Apellidos</label>
+                            <input id="apellidos" type="search" name="apellidos"
+                                   value="<?= limpiarPOST('apellidos') ?>" />
+
+                            <br /><br />
+
+                            <label for="dni">DNI</label>
+                            <input id="dni" type="search" name="dni"
+                                   value="<?= limpiarPOST('dni') ?>" />
+
+                            <label for="telefono">Teléfono</label>
+                            <input id="telefono" type="search" name="telefono"
+                                   value="<?= limpiarPOST('telefono') ?>" />
+
+                            <input type="submit" value="Buscar" />
+                        </form>
                     </div>
 
-                    <section id="busqueda"><!--No se muestra hasta que se pulsa buscar-->
-                        <h3>Resultado de la búsqueda</h3>
-                        <P>Las coincidencias con la búsqueda son:</P>
-                        <table>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Teléfono</th>
-                                <th>Provincia</th>
-                                <th>Ciudad</th>
-                                <th>Tiene Reservas</th>
-                            </tr>
+                    <?php
+                        if (!empty($_POST)):
+                            $datos = [
+                                'nombre'=>limpiarPOST('nombre'),
+                                'apellidos'=>trim(filter_input(INPUT_POST, 'apellidos')),
+                                'dni'=>trim(filter_input(INPUT_POST, 'dni')),
+                                'telefono'=>trim(filter_input(INPUT_POST, 'telefono')),
+                            ];
+                    ?>
+                        <section>
+                            <h3>Resultado de la búsqueda</h3>
+                            <P>Las coincidencias con la búsqueda son:</P>
+                            <table>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Teléfono</th>
+                                    <th>Provincia</th>
+                                    <th>Ciudad</th>
+                                    <th>Tiene Reservas</th>
+                                </tr>
 
-                            <?php
-                                $clientes = consulta_clientes_buscar($pdo);
-                                foreach ($clientes as $key => $value):
-                            ?>
-                                    <tr>
-                                        <td><?= $value['nombre'] ?></td>
-                                        <td><?= $value['apellidos'] ?></td>
-                                        <td><?= $value['telefono'] ?></td>
-                                        <td><?= $value['provincia'] ?></td>
-                                        <td><?= $value['ciudad'] ?></td>
-                                        <td></td>
-                                    </tr>
-                            <?php
-                                endforeach;
-                            ?>
-                        </table>
-                    </section>
+                                <?php
+                                    $clientes = consulta_clientes_buscar($pdo, $datos);
+                                    foreach ($clientes as $key => $value):
+                                ?>
+                                        <tr>
+                                            <td><?= $value['nombre'] ?></td>
+                                            <td><?= $value['apellidos'] ?></td>
+                                            <td><?= $value['telefono'] ?></td>
+                                            <td><?= $value['provincia'] ?></td>
+                                            <td><?= $value['ciudad'] ?></td>
+                                            <td></td>
+                                        </tr>
+                                <?php
+                                    endforeach;
+                                ?>
+                            </table>
+                        </section>
+                    <?php
+                    else:
+                    ?>
 
                     <section>
                         <h3>Con reserva en este momento</h3>
@@ -201,6 +226,10 @@
                         </table>
                     </section>
                 </article>
+
+                <?php
+                    endif;
+                ?>
             </div>
 
         <?php require ('aside.php'); ?>

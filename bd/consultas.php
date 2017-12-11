@@ -106,8 +106,9 @@ function consulta_clientes_fecha_ultima_alta(PDO $pdo): DateTime
     return new DateTime($alta);
 }
 
-function consulta_clientes_buscar(PDO $pdo)
+function consulta_clientes_buscar(PDO $pdo, array $datos)
 {
+    // TODO →
     $clientes = $pdo->prepare(
         'SELECT *
            FROM clientes
@@ -118,10 +119,10 @@ function consulta_clientes_buscar(PDO $pdo)
         ;
     ');
 
-    $nombre = '';
-    $apellidos = '';
-    $dni = '';
-    $telefono = '6';
+    $nombre = $datos['nombre'];
+    $apellidos = $datos['apellidos'];
+    $dni = $datos['dni'];
+    $telefono = $datos['telefono'];
     $clientes->execute([
         ':nombre' => "%{$nombre}%",
         ':apellidos' => "%{$apellidos}%",
